@@ -1,6 +1,9 @@
 <template>
     <div>
-        <section v-html="pages"></section>
+        <div v-for="page in pages" :key="page.id">
+            <section v-html="page.content.rendered"></section>
+            
+        </div>
     </div>
 </template>
 
@@ -20,18 +23,20 @@
             return {
                 title: 'About Me',
                 link: [
-                    { rel: "stylesheet", href: '/elementor/elementor-icons.min.css' },
-                    { rel: "stylesheet", href: '/elementor/common.min.css' },
-                    { rel: "stylesheet", href: '/elementor/animations.min.css' },
-                    { rel: "stylesheet", href: '/elementor/frontend.min.css' },
-                    { rel: "stylesheet", href: '/elementor/global.css' },
+                    // { href: 'http://localhost/wp-react/wp-includes/css/dist/block-library/style.min.css?ver=5.2.5' }
+                ],
+                script: [
                     
                 ]
             }
         },
         methods: {
             fetchPage: function() {
-                axios.get( 'http://localhost/wp-react/wp-json/wp/v2/elementor/pages/content/33')
+                axios.get( 'http://localhost/wp-react/wp-json/wp/v2/pages', {
+                    params: {
+                        slug: this.$route.params.slug
+                    }
+                })
                 .then( (res) => {
                     this.pages = res.data
                     console.log(res.data)

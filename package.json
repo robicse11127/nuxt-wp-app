@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "bootstrap-vue": "^2.3.0",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {}
