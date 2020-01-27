@@ -1,5 +1,6 @@
 <template>
-	<b-row class="mt-5 mb-5">
+	<div class="page-content">
+		<b-row>
 			<b-col class="col-md-4" v-for="post in posts" :key="post.id">
 				<div class="entry">
 					<nuxt-link :to="'/'+post.slug" class="entry__thumb-link">
@@ -14,6 +15,7 @@
 				</div>
 			</b-col>
 		</b-row>
+	</div>
 </template>
 
 <script>
@@ -78,6 +80,19 @@
     margin-top: 2rem;
     padding: 0 30px;
 	height: 300px;
+	color: #596a89;
+	font-size: 18px;
+}
+.entry__title {
+	font-size: 24px;
+	line-height: 1.2;
+	margin-bottom: 20px;
+}
+.entry__title a {
+	color: #0d121c;
+}
+.entry__title a:hover {
+	text-decoration: none;
 }
 .entry .more-wrap {
     width: 100%;
