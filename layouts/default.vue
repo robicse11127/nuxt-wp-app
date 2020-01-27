@@ -1,6 +1,7 @@
 <template>
 	<div>
 		<Navbar />
+		<PageHeader />
 		<b-container>
 			<nuxt />
 		</b-container>
@@ -9,9 +10,11 @@
 
 <script>
 	import Navbar from '../components/Navbar';
+	import PageHeader from '../components/PageHeader';
 	export default {
 		components: {
-			Navbar
+			Navbar,
+			PageHeader
 		}
 	}
 </script>
@@ -27,6 +30,9 @@
 		-moz-osx-font-smoothing: grayscale;
 		-webkit-font-smoothing: antialiased;
 		box-sizing: border-box;
+	}
+	body {
+		background-color: antiquewhite;
 	}
 
 	*,
