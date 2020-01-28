@@ -8,8 +8,8 @@
 						</div>
 					</nuxt-link>
 					<div class="entry__text">
-						<h2 class="entry__title"> <nuxt-link :to="'/'+post.slug"> {{post.title.rendered}} </nuxt-link></h2>
-						<p v-html="post.excerpt.rendered.split(/\s+/).slice(0,15).join(' ')">...</p>
+						<h2 class="entry__title"> <nuxt-link :to="'/'+post.slug"> {{wordLimiter(post.title.rendered, 10)}} </nuxt-link></h2>
+						<p v-html="wordLimiter(post.excerpt.rendered, 10)">...</p>
 					</div>
 					<div class="more-wrap"> <nuxt-link :to="'/'+post.slug">Read More</nuxt-link></div>
 				</div>
@@ -28,6 +28,13 @@
 
 	export default {
 		name: 'Home',
+		head() {
+			// return {
+			// 	links: [
+			// 		{ href: 'http://localhost/wp-react/wp-includes/css/dist/block-library/style.min.css?ver=5.2.5' }
+			// 	]
+			// }
+		},
 		data() {
 			return {
 				posts: [],
@@ -38,11 +45,11 @@
 				loadMore: false
 			}
 		},
-
 		mounted() {
 			this.fetchPosts();
 			this.showLoadMore();
 		},
+
 		methods: {
 			fetchPosts() {
 				axios.get( 'http://localhost/wp-react/wp-json/wp/v2/posts', {
@@ -78,9 +85,11 @@
 				}else {
 					this.loadMore = false;
 				}
+			},
+			wordLimiter(sentence, limit) {
+				return sentence.split(/\s+/).slice(0,limit).join(' ')
 			}
-			
-		},
+		}
 	}
 </script>
 

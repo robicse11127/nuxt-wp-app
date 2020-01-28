@@ -5,6 +5,9 @@
                 <div class="post_entry-header">
                     <h2 class="title">{{post.title.rendered}}</h2>
                 </div>
+                <div class="post_feature-image">
+                    <img :src="post.featured_image_src.full" :alt="post.slug">
+                </div>
                 <div class="post_entry-content">
                     <p v-html="post.content.rendered"></p>
                 </div>
@@ -19,13 +22,23 @@
     
     export default {
         name: 'Post',
+        head() {
+            return {
+                title: this.title,
+				link: [
+					{ href: '/wp-block/block.css', rel: 'stylesheet' }
+				]
+			}
+        },
         data() {
             return {
+                title: '',
                 posts: ''
             }
         },
         mounted() {
             this.fetchSinglePost()
+            this.fixTitle();
         },
         methods: {
             fetchSinglePost() {
@@ -36,7 +49,12 @@
                 })
                 .then( (res) => {
                     this.posts = res.data
+                    this.title = res.data.title.rendered
                 })
+            },
+            fixTitle() {
+                var str = this.$route.params.slug;
+                this.title = str.replace(/-/g, ' ').toUpperCase();
             }
         }
     }

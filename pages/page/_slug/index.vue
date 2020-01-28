@@ -10,7 +10,6 @@
 
 <script>
     import axios from 'axios';
-    import GridPicker from '../../../components/builder/GridPicker';
     import Draggable from 'vuedraggable';
     export default {
         components: {
