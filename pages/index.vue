@@ -15,6 +15,11 @@
 				</div>
 			</b-col>
 		</b-row>
+		<b-row>
+			<b-col md="12" class="text-center" v-if="loadMore">
+				<b-button variants="info" @click="fetchMorePosts">Load More</b-button>
+			</b-col>
+		</b-row>
 	</div>
 </template>
 
@@ -23,30 +28,59 @@
 
 	export default {
 		name: 'Home',
-		data: function() {
+		data() {
 			return {
-				posts: []
+				posts: [],
+				totalPosts: '',
+				totalPages: '',
+				page: 1,
+				perPage: 3,
+				loadMore: false
 			}
 		},
-		mounted: function() {
+
+		mounted() {
 			this.fetchPosts();
+			this.showLoadMore();
 		},
 		methods: {
-			fetchPosts: function() {
+			fetchPosts() {
 				axios.get( 'http://localhost/wp-react/wp-json/wp/v2/posts', {
 					params: {
-						per_page: 10,
-						page: 1
+						per_page: this.perPage,
+						page: this.page
 					}
 				})
 				.then( (res) => {
-					this.posts = res.data
+					if( '' == this.posts ) {
+						this.posts = res.data
+					}else {
+						res.data.map( (item, index) => {
+							this.posts = [...this.posts, item]
+						} )
+					}
+					this.totalPosts = res.headers['x-wp-total']
+					this.totalPages = res.headers['x-wp-totalpages']
+					console.log(this.posts)
 				})
 				.catch( (e) => {
 
 				})
+			},
+			fetchMorePosts() {
+				this.page += 1
+				this.fetchPosts();
+				this.showLoadMore();
+			},
+			showLoadMore() {
+				if( this.page > this.totalPages  ) {
+					this.loadMore = true;
+				}else {
+					this.loadMore = false;
+				}
 			}
-		}
+			
+		},
 	}
 </script>
 
