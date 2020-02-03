@@ -10,6 +10,7 @@
 
 <script>
     import axios from 'axios';
+    import config from '../../../nuxt.config';
     import Draggable from 'vuedraggable';
     export default {
         components: {
@@ -39,7 +40,7 @@
         },
         methods: {
             fetchPage: function() {
-                axios.get( 'http://localhost/wp-react/wp-json/wp/v2/pages', {
+                axios.get( `${config.api_url}/wp/v2/pages`, {
                     params: {
                         slug: this.$route.params.slug
                     }

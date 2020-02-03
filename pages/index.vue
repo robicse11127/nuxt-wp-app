@@ -25,16 +25,11 @@
 
 <script>
 	import axios from 'axios';
+	import config from '../nuxt.config';
 
 	export default {
 		name: 'Home',
-		head() {
-			// return {
-			// 	links: [
-			// 		{ href: 'http://localhost/wp-react/wp-includes/css/dist/block-library/style.min.css?ver=5.2.5' }
-			// 	]
-			// }
-		},
+		head() {},
 		data() {
 			return {
 				posts: [],
@@ -52,7 +47,7 @@
 
 		methods: {
 			fetchPosts() {
-				axios.get( 'http://localhost/wp-react/wp-json/wp/v2/posts', {
+				axios.get( `${config.api_url}/wp/v2/posts`, {
 					params: {
 						per_page: this.perPage,
 						page: this.page

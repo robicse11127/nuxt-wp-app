@@ -9,7 +9,7 @@
 
 <script>
 	import axios from 'axios';
-
+	import config from '../../nuxt.config';
 	export default {
 		name: 'Home',
 		data: function() {
@@ -22,7 +22,7 @@
 		},
 		methods: {
 			fetchPosts: function() {
-				axios.get( 'http://localhost/wp-react/wp-json/wp/v2/posts', {
+				axios.get( `${config.api_url}/wp/v2/posts`, {
 					params: {
 						per_page: 10,
 						page: 1

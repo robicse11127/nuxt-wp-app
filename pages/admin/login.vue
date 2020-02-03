@@ -30,6 +30,7 @@
 
 <script>
     import axios from 'axios';
+    import config from '../../nuxt.config';
     import ScreenLogo from '../../components/Logo'
     export default {
         name: 'Login',
@@ -59,7 +60,7 @@
                     password: this.form.password
                 }
 
-                axios.post(`http://localhost/wp-react/wp-json/jwt-auth/v1/token`, loginData)
+                axios.post(`${config.api_url}/jwt-auth/v1/token`, loginData)
                 .then( (res) => {
                     if( 'undefined' == res.data.token ) {
                         this.form.error = res.data.message;

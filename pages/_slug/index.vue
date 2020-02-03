@@ -42,7 +42,7 @@
         },
         methods: {
             fetchSinglePost() {
-                axios.get( `http://localhost/wp-react/wp-json/wp/v2/posts`, {
+                axios.get( `${config.api_url}/wp/v2/posts`, {
                     params: {
                         slug: this.$route.params.slug
                     }
