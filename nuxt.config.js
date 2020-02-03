@@ -1,7 +1,8 @@
 export default {
 	mode: 'universal',
-	app_url: 'http://localhost/wp-react',
-	api_url: 'http://localhost/wp-react/wp-json/wp/v2',
+	// app_url: 'http://localhost/wp-react',
+	// api_url: 'http://localhost/wp-react/wp-json/wp/v2',
+	api_url: (process.env.NODE_ENV == 'development') ? 'http://localhost/wp-react/wp-json' : 'https://wpdevlopment.000webhostapp.com/wp-json',
 	/*
 	** Headers of the page
 	*/

@@ -32,6 +32,7 @@
 
 <script>
     import axios from 'axios';
+    import config from '../nuxt.config';
     export default {
         name: 'Navbar',
         data() {
@@ -44,10 +45,11 @@
         mounted() {
             this.fetchMenus();
             this.checkLoggedIn();
+            console.log(config)
         },
         methods: {
             fetchMenus() {
-                axios.get( 'http://localhost/wp-react/wp-json/wp/v2/menus' )
+                axios.get( `${config.api_url}/wp/v2/menus` )
                 .then( (res) => {
                     this.menus = res.data.primary
                     this.signupMenus = res.data.signup
