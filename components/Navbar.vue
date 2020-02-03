@@ -57,7 +57,7 @@
             },
             checkLoggedIn() {
                 const token = localStorage.getItem('token');
-                if( typeof token !== 'undefined' || token !== '' ) {
+                if( token !== 'undefined' && token !== '' ) {
                     this.isLoggedIn = true;
                 }
             }
