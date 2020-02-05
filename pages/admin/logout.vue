@@ -17,8 +17,7 @@
         },
         methods: {
             logout() {
-                localStorage.removeItem('token', '');
-                localStorage.removeItem('userNiceName', '');
+                // this.$store.
             }
         }
     }
