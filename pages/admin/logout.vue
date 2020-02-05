@@ -1,6 +1,6 @@
 <template>
     <div>
-        You are loggeed out.
+        
     </div>
 </template>
 
@@ -17,7 +17,9 @@
         },
         methods: {
             logout() {
-                // this.$store.
+                this.$store.commit('auth/resetToken');
+                // Redirect to Home If Logged Out
+                this.$router.push('/')
             }
         }
     }

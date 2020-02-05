@@ -32,7 +32,7 @@
 		head() {},
 		data() {
 			return {
-				posts: [],
+				// posts: [],
 				totalPosts: '',
 				totalPages: '',
 				page: 1,
@@ -44,30 +44,37 @@
 			this.fetchPosts();
 			this.showLoadMore();
 		},
-
+		computed: {
+			posts() {
+				return this.$store.state.posts.posts;
+			}
+		},
 		methods: {
 			fetchPosts() {
-				axios.get( `${config.api_url}/wp/v2/posts`, {
-					params: {
-						per_page: this.perPage,
-						page: this.page
-					}
+				this.$store.dispatch('posts/fetchPosts', {
+					per_page: this.perPage,
+					page: this.page
 				})
-				.then( (res) => {
-					if( '' == this.posts ) {
-						this.posts = res.data
-					}else {
-						res.data.map( (item, index) => {
-							this.posts = [...this.posts, item]
-						} )
-					}
-					this.totalPosts = res.headers['x-wp-total']
-					this.totalPages = res.headers['x-wp-totalpages']
-					console.log(this.posts)
-				})
-				.catch( (e) => {
+				// axios.get( `${config.api_url}/wp/v2/posts`, {
+				// 	params: {
+				// 		per_page: this.perPage,
+				// 		page: this.page
+				// 	}
+				// })
+				// .then( (res) => {
+				// 	if( '' == this.posts ) {
+				// 		this.posts = res.data
+				// 	}else {
+				// 		res.data.map( (item, index) => {
+				// 			this.posts = [...this.posts, item]
+				// 		} )
+				// 	}
+				// 	this.totalPosts = res.headers['x-wp-total']
+				// 	this.totalPages = res.headers['x-wp-totalpages']
+				// })
+				// .catch( (e) => {
 
-				})
+				// })
 			},
 			fetchMorePosts() {
 				this.page += 1

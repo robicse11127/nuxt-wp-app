@@ -66,9 +66,6 @@
                         this.form.error = res.data.message;
                         this.form.isLoading = false
                     }else {
-                        // localStorage.setItem( 'token', res.data.token );
-                        // localStorage.setItem( 'userNiceName', res.data.user_nicename );
-
                         // Update auth.js store
                         this.$store.commit('auth/updateToken', res.data.token)
 

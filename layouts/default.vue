@@ -1,7 +1,6 @@
 <template>
 	<div>
 		<Navbar />
-		<PageHeader />
 		<b-container>
 			<nuxt />
 		</b-container>
