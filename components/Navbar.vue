@@ -16,7 +16,7 @@
                         </b-nav-item>
                     </b-navbar-nav>
                     <!-- Right aligned nav items -->
-                    <b-navbar-nav class="ml-auto" v-if="!isLoggedIn">
+                    <b-navbar-nav class="ml-auto" v-if="!checkLoggedIn">
                         <b-nav-item v-for="signupMenu in signupMenus" :key="signupMenu.id">
                             <nuxt-link :to="'/admin/'+signupMenu.parent.slug" class="nav-link">{{signupMenu.parent.title}}</nuxt-link>
                         </b-nav-item>
@@ -44,8 +44,11 @@
         },
         mounted() {
             this.fetchMenus();
-            this.checkLoggedIn();
-            console.log(config)
+        },
+        computed: {
+            checkLoggedIn() {
+                return this.$store.state.auth.isLoggedIn
+            }
         },
         methods: {
             fetchMenus() {
@@ -55,12 +58,7 @@
                     this.signupMenus = res.data.signup
                 } )
             },
-            checkLoggedIn() {
-                const token = localStorage.getItem('token');
-                if( token !== 'undefined' && token !== '' ) {
-                    this.isLoggedIn = true;
-                }
-            }
+            
         }
     }
 </script>
