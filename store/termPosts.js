@@ -7,16 +7,18 @@ export const state = () => ({
     totalPages: '',
     loadmore: false,
     loadmoreText: 'Load More',
+    termID: '',
     page: 1,
     perPage: 6
 })
 
 // Actions
 export const actions = {
-    fetchPosts({commit, state}) {
+    fetchPosts({commit, state}, id) {
         // Send Server Request
         axios.get(`${config.api_url}/wp/v2/posts`, {
             params: {
+                categories: id,
                 per_page: state.perPage,
                 page: state.page
             }
@@ -49,6 +51,7 @@ export const actions = {
 export const mutations = {
 
     setPosts(state, posts) {
+        // Reset state 
         state.posts = [];
         if( state.posts == '' ) {
             state.posts = posts

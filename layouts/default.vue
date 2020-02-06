@@ -31,7 +31,7 @@
 		box-sizing: border-box;
 	}
 	body {
-		background-color: antiquewhite;
+		background-color: #f9f9f9;
 	}
 
 	*,
