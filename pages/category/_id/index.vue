@@ -60,7 +60,7 @@
 			},
 			fetchMorePosts() {
 				this.loadmoreText = 'Loading...';
-				this.$store.dispatch('posts/fetchMorePosts')
+				this.$store.dispatch('termPosts/fetchMorePosts', this.$route.params.id)
 				.then( () => {
 					this.loadmoreText = 'Load More';
 				})

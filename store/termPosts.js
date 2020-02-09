@@ -15,6 +15,7 @@ export const state = () => ({
 // Actions
 export const actions = {
     fetchPosts({commit, state}, id) {
+        commit('resetState', id)
         // Send Server Request
         axios.get(`${config.api_url}/wp/v2/posts`, {
             params: {
@@ -24,23 +25,26 @@ export const actions = {
             }
         })
         .then( (res) => {
-            commit('setPosts', res.data)
+            let posts = res.data;
+            commit('setPosts', {posts, id})
             commit('setHeaders', res.headers)
             commit('loadmore')
         })
     },
-    fetchMorePosts({commit, state}) {
+    fetchMorePosts({commit, state}, id) {
         // Increase Page Count BY One
         commit('increasePageCount')
         // Send Server Request
         axios.get(`${config.api_url}/wp/v2/posts`, {
             params: {
+                categories: id,
                 per_page: state.perPage,
                 page: state.page
             }
         })
         .then( (res) => {
-            commit('setPosts', res.data)
+            let posts = res.data;
+            commit('setPosts', {posts, id})
             commit('setHeaders', res.headers),
             commit('loadmore')
         })
@@ -50,9 +54,7 @@ export const actions = {
 // Mutations
 export const mutations = {
 
-    setPosts(state, posts) {
-        // Reset state 
-        state.posts = [];
+    setPosts(state, {posts, id}) {
         if( state.posts == '' ) {
             state.posts = posts
         }else {
@@ -76,6 +78,16 @@ export const mutations = {
             state.loadmore = false
         }else {
             state.loadmore = true
+        }
+    },
+
+    resetState(state, id) {
+        if( id != state.termID ) {
+            state.posts = ''
+            state.page = 1;
+            state.termID = id;
+        }else {
+            state.termID = id
         }
     }
 

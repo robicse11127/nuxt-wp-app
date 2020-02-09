@@ -47,9 +47,8 @@ export const actions = {
 
 // Mutations
 export const mutations = {
-
     setPosts(state, posts) {
-        state.posts = [];
+        state.posts = '';
         if( state.posts == '' ) {
             state.posts = posts
         }else {
