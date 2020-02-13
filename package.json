@@ -1,9 +1,8 @@
 {
-  "name": "nuxt-wp-app",
-  "version": "1.0.0",
+  "name": "create-nuxt-wp-app",
+  "version": "1.0.1",
   "description": "A Nuxt JS Application with WordPress Rest API",
-  "author": "rabiul",
-  "private": true,
+  "author": "robicse11127",
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",

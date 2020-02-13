@@ -1,22 +1,14 @@
-# nuxt-wp-app
+# A nuxt js application built with WordPress rest api.
 
-> A Nuxt JS Application with WordPress Rest API
+# Dependencies
+1. WP Blank Theme (<a href="https://github.com/robicse11127/wp-blank-theme">Get It From Here</a>)
+2. WP Rest APi Helper Plugin (<a href="https://github.com/robicse11127/wp-rest-api-helper">Get It From Here</a>)
+3. JWT Authentication for WP-API (<a href="https://wordpress.org/plugins/jwt-authentication-for-wp-rest-api/">Get It From Here</a>)
+4. WP REST User (<a href="https://wordpress.org/plugins/wp-rest-user/">Get It From Here</a>)
 
-## Build Setup
+# Configuration
+Open <code>config.js</code> and update your url accordingly.
 
-``` bash
-# install dependencies
-$ npm run install
 
-# serve with hot reload at localhost:3000
-$ npm run dev
 
-# build for production and launch server
-$ npm run build
-$ npm run start
 
-# generate static project
-$ npm run generate
-```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

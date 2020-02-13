@@ -1,5 +1,6 @@
 <template>
     <div>
+        
         <article v-for="page in pages" :key="page.id">
             <div class="page__entry" v-html="page.content.rendered">
                 
@@ -12,9 +13,11 @@
     import axios from 'axios';
     import config from '../../../nuxt.config';
     import Draggable from 'vuedraggable';
+    import contact from '../../../components/forms/ContactUs';
     export default {
         components: {
-            Draggable
+            Draggable,
+            contact
         },
         name: 'Page',
         data() {
